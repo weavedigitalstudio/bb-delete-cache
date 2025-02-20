@@ -17,9 +17,10 @@
 This plugin allows you to **clear Beaver Builder cache** directly from the WordPress admin bar.  
 
 ### 🚀 New in this version (1.1.1):
-- ✅ **Restricted access to Editors and Admins only** (`edit_pages` capability required).  
+- ✅ **Updated for modern WordPress versions** (now supports **PHP 7.4+**)  
 - ✅ **Fixed nonce verification issues** for security.  
-- ✅ **Improved sanitization & escaping** to follow WordPress coding standards.  
+- ✅ **Improved sanitization & escaping** to follow WordPress coding standards.
+- ✅ **Restricted access to Editors and Admins only** (`edit_pages` capability required).  
 - ✅ **Now actively maintained by [Weave](https://github.com/weavedigitalstudio/)**.  
 
 ---
