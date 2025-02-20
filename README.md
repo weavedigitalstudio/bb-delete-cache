@@ -7,7 +7,7 @@ Tested up to: 6.4
 Stable tag: 1.1.0  
 Version: 1.1.0  
 Text Domain: bb-delete-cache  
-License: GPLv3  
+License: GPLv2  
 License URI: http://www.gnu.org/licenses/gpl-3.0.html  
 
 ## 🛠 What is this?
