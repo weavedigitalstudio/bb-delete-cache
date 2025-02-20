@@ -3,12 +3,12 @@
 Plugin Name: BB Delete Cache (Updated)
 Description: Adds a button in the WordPress admin bar to clear Beaver Builder cache for the current post or the entire site.
 Plugin URI: https://github.com/weavedigitalstudio/bb-delete-cache/
-Version: 1.1.0
+Version: 1.1.1
 Author: Gareth Bissland
 Author URI: https://weave.co.nz
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
-Primary Branch:    main
+Primary Branch: main
 GitHub Plugin URI: weavedigitalstudio/bb-delete-cache/
 Text Domain: bb-delete-cache
 */
@@ -18,9 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-namespace Weave\BBDeleteCache;
-
-class BB_Delete_Cache_Admin_Bar {
+class Weave_BB_Delete_Cache {
 
     public function __construct() {
         add_action( 'init', array( $this, 'load_textdomain' ) );
@@ -34,6 +32,11 @@ class BB_Delete_Cache_Admin_Bar {
 
     public function add_item() {
         if ( ! is_admin_bar_showing() ) {
+            return;
+        }
+
+        // Restrict cache clearing to Editors and Admins
+        if ( ! current_user_can( 'edit_pages' ) ) {
             return;
         }
 
@@ -76,6 +79,11 @@ class BB_Delete_Cache_Admin_Bar {
     }
 
     public function clear_cache() {
+        // Restrict access to Editors and Admins
+        if ( ! current_user_can( 'edit_pages' ) ) {
+            wp_die( __( 'You do not have permission to clear the cache.', 'bb-delete-cache' ), 403 );
+        }
+
         if ( isset( $_GET['type'], $_GET['_wpnonce'] ) ) {
             
             if ( ! wp_verify_nonce( $_GET['_wpnonce'], 'purge_cache_' . $_GET['type'] ) ) {
@@ -105,8 +113,9 @@ class BB_Delete_Cache_Admin_Bar {
     }
 }
 
+// Initialize the plugin
 add_action( 'init', function() {
     if ( class_exists( 'FLBuilder' ) ) {
-        new BB_Delete_Cache_Admin_Bar();
+        new Weave_BB_Delete_Cache();
     }
 });
