@@ -80,7 +80,3 @@ The Weave team has **updated and now actively maintains** this plugin to support
 
 - ✅ **Only Editors & Admins can clear the cache** (`edit_pages` required).  
 - ✅ **Improved security & optimized performance**.  
-
----
-
-This should now be ready to **commit & push to GitHub**! 🚀 Let me know if you need any changes! 🔥
