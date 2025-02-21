@@ -4,8 +4,8 @@
 **Tags:** Beaver Builder, clear, cache, admin bar  
 **Requires at least:** 5.0  
 **Tested up to:** 6.4  
-**Stable tag:** 1.1.1  
-**Version:** 1.1.1  
+**Stable tag:** 1.2.0  
+**Version:** 1.2.0  
 **Text Domain:** bb-delete-cache  
 **License:** GPLv2  
 **License URI:** [http://www.gnu.org/licenses/gpl-3.0.html](http://www.gnu.org/licenses/gpl-3.0.html)  
@@ -16,8 +16,9 @@
 
 This plugin allows you to **clear Beaver Builder cache** directly from the WordPress admin bar.  
 
-### 🚀 New in this version (1.1.1):
-- ✅ **Updated for modern WordPress versions** (now supports **PHP 7.4+**)  
+### 🚀 New in this version (1.2.0):
+- ✅ **Updated for modern WordPress versions** (now supports **PHP 7.4+**)
+- ✅ **Better Admin Bar Integration**  (user roles and seperate menu bar item)
 - ✅ **Fixed nonce verification issues** for security.  
 - ✅ **Improved sanitization & escaping** to follow WordPress coding standards.
 - ✅ **Restricted access to Editors and Admins only** (`edit_pages` capability required).  
@@ -86,7 +87,17 @@ When installing this plugin from GitHub:
 
 ---
 
-### 🔹 What’s Changed in 1.1.1?
+## v1.2.0 - 2025-02-21
 
-- ✅ **Only Editors & Admins can clear the cache** (`edit_pages` required).  
-- ✅ **Improved security & optimized performance**.  
+### 🚀 Improvements:
+- **Better Admin Bar Integration**:  
+  - If the user has **Beaver Builder frontend editing access**, the cache clearing options now appear inside **the Beaver Builder admin bar menu**.  
+  - If the user **does not** have Beaver Builder access, a **new top-level admin bar menu** is created, ensuring Editors and Admins can still clear the cache.  
+
+### 🔒 Security & Permissions:
+- **Ensured only Editors and Admins (`edit_pages` capability) can clear the cache**, preventing unauthorized users from accessing cache options.  
+
+### 🛠 Code Enhancements:
+- Improved compatibility with **Beaver Builder’s user access settings** (`FLBuilderUserAccess`).  
+- Optimized **admin bar rendering** to prevent unnecessary loading.  
+
