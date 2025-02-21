@@ -3,11 +3,10 @@
 Plugin Name: BB Delete Cache (Updated)
 Description: Adds a button in the WordPress admin bar to clear Beaver Builder cache for the current post or the entire site.
 Plugin URI: https://github.com/weavedigitalstudio/bb-delete-cache/
-Version: 1.1.1
-Author: Gareth Bissland
+Version: 1.2.0
+Author: Gareth Bissland, Weave Digital Studio
 Author URI: https://weave.co.nz
 License: GPLv2
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Primary Branch: main
 GitHub Plugin URI: weavedigitalstudio/bb-delete-cache/
 Text Domain: bb-delete-cache
@@ -34,29 +33,47 @@ class Weave_BB_Delete_Cache {
         if ( ! is_admin_bar_showing() ) {
             return;
         }
-
+    
         // Restrict cache clearing to Editors and Admins
         if ( ! current_user_can( 'edit_pages' ) ) {
             return;
         }
-
+    
         global $post;
-
+        global $wp_admin_bar;
+    
         $referer = '&_wp_http_referer=' . urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) );
         $action  = 'purge_cache';
-
+    
+        // **Check if the user has Beaver Builder frontend editing access**
+        $has_bb_access = class_exists( 'FLBuilderUserAccess' ) && FLBuilderUserAccess::current_user_can('builder_access');
+    
+        // **Set parent menu ID based on BB access**
+        $parent_menu_id = $has_bb_access ? 'fl-builder-frontend-edit-link' : 'bb-delete-cache';
+    
+        // **If no BB access, create a new top-level admin bar menu**
+        if ( ! $has_bb_access ) {
+            $wp_admin_bar->add_menu( array(
+                'id'    => 'bb-delete-cache',
+                'title' => __( 'Clear BB Cache', 'bb-delete-cache' ),
+                'href'  => '#',
+            ));
+        }
+    
+        // **Add "Clear This Page Cache" if on a post**
         if ( ! is_admin() && isset( $post->ID ) ) {
             $this->add_sub_menu(
                 'bb-delete-url-cache',
-                'fl-builder-frontend-edit-link',
+                $parent_menu_id,
                 __( 'Clear This Page Cache', 'bb-delete-cache' ),
                 wp_nonce_url( admin_url( 'admin-post.php?action=' . $action . '&type=post-' . $post->ID . $referer ), $action . '_post-' . $post->ID )
             );
         }
-
+    
+        // **Add "Clear All Cache" option**
         $this->add_sub_menu(
             'bb-delete-all-cache',
-            'fl-builder-frontend-edit-link',
+            $parent_menu_id,
             __( 'Clear Beaver Builder Cache', 'bb-delete-cache' ),
             wp_nonce_url( admin_url( 'admin-post.php?action=' . $action . '&type=all' . $referer ), $action . '_all' )
         );
