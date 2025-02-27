@@ -17,12 +17,11 @@
 This plugin allows you to **clear Beaver Builder cache** directly from the WordPress admin bar.  
 
 ### 🚀 New in this version (1.2.0):
-- ✅ **Updated for modern WordPress versions** (now supports **PHP 7.4+**)
-- ✅ **Better Admin Bar Integration**  (user roles and seperate menu bar item)
-- ✅ **Fixed nonce verification issues** for security.  
-- ✅ **Improved sanitization & escaping** to follow WordPress coding standards.
-- ✅ **Restricted access to Editors and Admins only** (`edit_pages` capability required).  
-- ✅ **Now actively maintained by [Weave](https://github.com/weavedigitalstudio/)**.  
+- **Updated for modern WordPress versions** (now supports **PHP 7.4+**)
+- **Better Admin Bar Integration**  (user roles and seperate menu bar item)
+- **Fixed nonce verification issues** for security.  
+- **Improved sanitization & escaping** to follow WordPress coding standards.
+- **Restricted access to Editors and Admins only** (`edit_pages` capability required).  
 
 ---
 
@@ -38,9 +37,11 @@ Beaver Builder caches assets to improve performance, but sometimes, **changes do
 
 ## 🔄 Credits & Attribution
 
-This plugin is based on the original **[BB Delete Cache](https://wordpress.org/plugins/bb-delete-cache/)** plugin by **Thierry Pigot** and **wearewp**, which looks like was abandoned in 2019.  
+This plugin is based on the original **[BB Delete Cache](https://wordpress.org/plugins/bb-delete-cache/)** plugin by **Thierry Pigot** and **wearewp**, which looks like was abandoned in 2019.
 
-The Weave team has **updated and now actively maintains** this plugin to support **modern WordPress and PHP versions** while we continue ot use BB..
+**UPDATED:** A compatibility update was made and the original plugin is now functioning.
+
+Weave has **updated and now actively maintains** this plugin to support **modern WordPress and PHP versions** while we continue ot use BB..
 
 ---
 
